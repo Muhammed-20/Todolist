@@ -3,7 +3,7 @@
 const todoInput = document.querySelector(".todo-input");
 const todoButton = document.querySelector(".todo-button");
 const todoList   =  document.querySelector(".todo-list");
-const todoFilter =  document.querySelector(".todo-filter");
+const todoFilter =  document.querySelector(".filter-todo");
 
 const alertWarning = document.querySelector(".alert-warning");
 const alertSucces = document.querySelector(".alert-succes");
@@ -12,6 +12,7 @@ const alertSucces = document.querySelector(".alert-succes");
 
 todoButton.addEventListener("click" , addTodo);
 todoList.addEventListener("click", deleteCheck);
+todoFilter.addEventListener("click", filterTodo);
 
 function addTodo(e){
 
@@ -38,7 +39,7 @@ function addTodo(e){
      
      const completebtn = document.createElement("button")
      completebtn.innerHTML="<i class='fas fa-check-circle'></i>";
-     completebtn.classList.add(".complete-btn")
+     completebtn.classList.add("complete-btn")
      todoDiv.appendChild(completebtn);
      
      const todoItem = document.createElement("li");
@@ -68,7 +69,7 @@ function deleteCheck(e){
 
      //? delete todo
      if (item.classList[0] === "trash-btn"){
-          const todo =item.parentElement; // tıkladığımızın parentElementini
+          const todo =item.parentElement; // tıkladığımızın parentElementini yani üst  öğeisni
           todo.classList.add("fall");
           todo.addEventListener("transitionend", function(){
           todo.remove();
@@ -78,7 +79,35 @@ function deleteCheck(e){
      // check 
      if(item.classList[0] === "complete-btn"){
           const todo = item.parentElement;
+          const todoParentElement = todo.parentNode;
           todo.classList.toggle("completed");
+          todoParentElement.firstChild.childNodes[2].style.display = "none";
+          
      }
+}
+function filterTodo(e){
+     const todos = todoList.childNodes;
+     todos.forEach(function (item) {
+          switch (e.target.value) {
+               case "all":
+                    item.style.display = "flex";
+                    break;
+               case "completed":
+                    if (item.classList.contains("completed")) {
+                    item.style.display ="flex"; 
+               } else {
+                    item.style.display ="none";
+               }
+                    break;
+               case "uncompleted":
+                    if (!item.classList.contains("completed")) {
+                         item.style.display = "flex";
+               }else {
+                    item.style.display = "none";
+               }
+                    break;
+          }
+     })
 
+     
 }
