@@ -102,7 +102,8 @@ select{
 	padding: 0 0.5rem;
 }
 
-.complete-btn, .trash-btn{
+.complete-btn, 
+.trash-btn{
 	background-color: #960303;
 	color: #fff;
 	border: none;
@@ -150,7 +151,7 @@ select{
     opacity: 0;
 }
 
-.copmleted{
+.completed{
     opacity: 0.5;
     text-decoration: line-through;
 }

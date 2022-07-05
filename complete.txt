@@ -1,0 +1,6 @@
+if(item.classList[0] === "complete-btn"){
+        const todo = item.parentElement;
+        const todoParentElement = todo.parentNode;
+        todo.classList.toggle("completed");
+        todoParentElement.firstChild.childNodes[2].style.display = "none";
+        }
